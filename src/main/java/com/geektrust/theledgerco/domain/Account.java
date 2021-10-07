@@ -1,23 +1,19 @@
 package com.geektrust.theledgerco.domain;
 
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Account {
+    @Setter
     private Double loanAmount;
+    @Setter
     private Integer noOfEmi;
     private List<Payment> lumSumPayments;
 
     public Account() {
         lumSumPayments = new ArrayList<>();
-    }
-
-    public void setLoanAmount(Double loanAmount) {
-        this.loanAmount = loanAmount;
-    }
-
-    public void setNoOfEmi(Integer noOfEmi) {
-        this.noOfEmi = noOfEmi;
     }
 
     public void addPayment(Payment payment) {

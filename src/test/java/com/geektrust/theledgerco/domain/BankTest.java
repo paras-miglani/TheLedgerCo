@@ -26,7 +26,7 @@ class BankTest {
         bank.addCustomer(customer);
         CustomerAlreadyExistException customerAlreadyExistException = assertThrows(CustomerAlreadyExistException.class,
                 () -> bank.addCustomer(customer));
-        assertEquals("Customer already existsCustomer{name='borrower name'}",
+        assertEquals("Customer already existsCustomer(name=borrower name)",
                 customerAlreadyExistException.getMessage());
     }
 
@@ -45,7 +45,7 @@ class BankTest {
         Customer customer = new Customer("borrower name");
         CustomerNotFoundException customerNotFoundException = assertThrows(CustomerNotFoundException.class,
                 () -> bank.findCustomerAccount(customer));
-        assertEquals("Customer not found Customer{name='borrower name'}",
+        assertEquals("Customer not found Customer(name=borrower name)",
                 customerNotFoundException.getMessage());
     }
 }

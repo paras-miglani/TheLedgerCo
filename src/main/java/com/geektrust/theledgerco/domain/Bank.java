@@ -2,14 +2,23 @@ package com.geektrust.theledgerco.domain;
 
 import com.geektrust.theledgerco.exceptions.CustomerAlreadyExistException;
 import com.geektrust.theledgerco.exceptions.CustomerNotFoundException;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+@EqualsAndHashCode
+@ToString
 public class Bank {
+    @Getter
     private final String name;
+
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private final Map<Customer, Account> customers;
 
     public Bank(String name) {
@@ -29,29 +38,5 @@ public class Bank {
     public Account findCustomerAccount(Customer customer) throws CustomerNotFoundException {
         return Optional.ofNullable(customers.get(customer))
                 .orElseThrow(() -> new CustomerNotFoundException("Customer not found " + customer));
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Bank)) return false;
-        Bank bank = (Bank) o;
-        return Objects.equals(name, bank.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
-    }
-
-    @Override
-    public String toString() {
-        return "Bank{" +
-                "name='" + name + '\'' +
-                '}';
     }
 }
